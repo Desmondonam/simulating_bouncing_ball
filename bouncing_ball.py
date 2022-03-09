@@ -1,14 +1,32 @@
-from visual import* 
-ball = sphere(pos=(0,10,0), radius=1, color=color.red)
-floor = box(pos=(0,0,0), size = (10,0.5,10), color=color.green)
-ball.velocity=vector(0,0,0)
-dt=0.01
-t=0
-g=-9.8
-while (t < 20):
-  rate(100)
-  ball.velocity.y=ball.velocity.y+g*dt
-  ball.pos=ball.pos+ball.velocity*dt
-  if (ball.pos.y < floor.pos.y + 1.25) :
-    ball.velocity.y = -ball.velocity.y
-  t=t+dt
+import turtle
+# Set key parameters
+gravity = -9.8  # pixels/(time of iteration)^2
+y_velocity = 1  # pixels/(time of iteration)
+x_velocity = 0.0  # pixels/(time of iteration)
+cor = 0.646 # this is the energy loss or the coefficient of restitution
+width = 600
+height = 700
+# Set window and ball
+window = turtle.Screen()
+window.setup(width, height)
+window.tracer(0)
+ball = turtle.Turtle()
+ball.penup()
+ball.color("Orange")
+ball.shape("circle")
+# Main loop
+while True:
+    # Move ball
+    ball.sety(ball.ycor() + y_velocity)
+    ball.setx(ball.xcor() + x_velocity)
+    # Acceleration due to gravity
+    y_velocity += gravity
+    # Bounce off the ground
+    if ball.ycor() < -height / 2:
+        y_velocity = -y_velocity * cor
+        # Set ball to ground level to avoid it getting "stuck"
+        ball.sety(-height / 2)
+    # Bounce off the walls (left and right)
+    if ball.xcor() > width / 2 or ball.xcor() < -width / 2:
+        x_velocity = -x_velocity
+    window.update()
