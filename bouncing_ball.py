@@ -1,9 +1,9 @@
 import turtle
 # Set key parameters
-gravity = -9.8  # pixels/(time of iteration)^2
+gravity = -0.005  # pixels/(time of iteration)^2
 y_velocity = 1  # pixels/(time of iteration)
 x_velocity = 0.0  # pixels/(time of iteration)
-cor = 0.646 # this is the energy loss or the coefficient of restitution
+cor = 0.546 # this is the energy loss or the coefficient of restitution
 width = 600
 height = 700
 # Set window and ball
@@ -12,7 +12,7 @@ window.setup(width, height)
 window.tracer(0)
 ball = turtle.Turtle()
 ball.penup()
-ball.color("Orange")
+ball.color("red")
 ball.shape("circle")
 # Main loop
 while True:
